@@ -26,12 +26,16 @@ function CalculeazaTotalul() {
       EmisiigKm(distanta, eficienta, conversieBenzina);
     } else if (tipCombustibil === 'motorina') {
       EmisiigKm(distanta, eficienta, conversieMotorina);
-    }
+    } 
   } else if (tipEficienta === 'L/100km') {
     if (tipCombustibil === 'benzina') {
       Emisiil100km(distanta, eficienta, conversieBenzina);
     } else if (tipCombustibil === 'motorina') {
       Emisiil100km(distanta, eficienta, conversieMotorina);
+    }
+  } else if (tipEficienta === 'KWh/100km') {
+    if (tipCombustibil === 'electric') {
+      EmisiiKWh100km(distanta, eficienta);
     }
   }
 }
@@ -42,10 +46,16 @@ function MileInKilometri(distanta) {
 
 function EmisiigKm(distanta, eficienta) {
   let emisii = distanta * eficienta;
-  document.querySelector('.js_rezultat').innerHTML = `<p>${emisii / 1000000} tone metrice de CO2</p>`;
+  document.querySelector('.js_rezultat').innerHTML = `${emisii / 1000000} tone de CO2`;
 }
 
 function Emisiil100km(distanta, eficienta, conversie) {
   let emisii = eficienta * conversie * distanta;
-  document.querySelector('.js_rezultat').innerHTML = `<p>${emisii / 1000000} tone metrice de CO2</p>`;
+  document.querySelector('.js_rezultat').innerHTML = `${emisii / 1000000} tone de CO2`;
+}
+
+function EmisiiKWh100km(distanta, eficienta) {
+  let KWh = eficienta * 100 * distanta;
+  let emisii = KWh * 232;
+  document.querySelector('.js_rezultat').innerHTML = `${emisii / 1000000} tone de CO2`;
 }
