@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="ro">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>titlu</title>
+    <link rel="stylesheet" href="../Styles/calculatorEmisiiMasini.css">
+</head>
+<body>
+    <h1>Calculator emisii masini</h1>
+    <p>Distanta: </p>
+    <input type="text" id="js_distanta">
+    <select id="js_unitate">
+        <option value="km">km</option>
+        <option value="mile">mile</option>
+    </select>
+    <p>Eficienta: </p>
+    <input type="number" id="js_eficienta">
+    <select id="js_tip_eficienta">
+        <option value="g/km">g/km</option>
+        <option value="L/100km">L/100km</option>
+    </select>
+    <select id="js_tip_combustibil">
+        <option value="benzina">benzina</option>
+        <option value="motorina">motorina</option>
+        <option value="electric">electric</option>
+    </select>
+    <button onclick="CalculeazaTotalul();">Calculeaza</button>
+    <p class="js_rezultat"></p>
+    <script src="../Scripts/calculatorEmisiiMasini.js"></script>
+</body>
+</html>
