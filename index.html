@@ -10,8 +10,7 @@
     <header>
         <nav>
             <ul>
-                <li><button onclick="scrollToSection('about')">Despre Noi</button></li>
-                <li><button onclick="scrollToSection('function')">Funcționalitate</button></li>
+                <li><button onclick="scrollToSection('about')">Scopul Nostru</button></li>
             </ul>
         </nav>
     </header>
@@ -21,9 +20,10 @@
     </main>
 
     
+    
 
     <div class="card-container">
-        <div class="card">
+        <div class="card" onclick="window.location.href='../masina/'">
             <i class="fas fa-car"></i>
             Emisii transport
           </div>
@@ -31,44 +31,12 @@
 
 
     <section id="about" class="info-section">
-        <h2>Despre Noi</h2>
+        <h2>Scopul nostru</h2>
         <div class="content-box">
-           <ul>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-            <li>.</li>
-           </ul>
+           <p>Acest site are rolul de a contribui la economisirea resurselor naturale, ajutând utilizatorul să conștientizeze impactul activităților sale asupra mediului</p>
         </div>
     </section>
 
-    <section id="function" class="info-section">
-        <h2>Funcționalitate</h2>
-        <div class="content-box">
-            <ul>
-                <li>.</li>
-                <li>.</li>
-                <li>.</li>
-                <li>.</li>
-                <li>.</li>
-                <li>.</li>
-                <li>.</li>
-                <li>.</li>
-                <li>.</li>
-                <li>.</li>
-            </ul>
-        </div>
-    </section>
 
     <script>
         function scrollToSection(sectionId) {

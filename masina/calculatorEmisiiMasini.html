@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>titlu</title>
-    <link rel="stylesheet" href="Styles/calculatorEmisiiMasini.css">
+    <link rel="stylesheet" href="../Styles/calculatorEmisiiMasini.css">
 </head>
 <body>
-    <h1>Calculator emisii masini</h1>
-    <p>Distanta: </p>
-    <input type="text" id="js_distanta">
-    <select id="js_unitate">
-        <option value="km">km</option>
-        <option value="mile">mile</option>
-    </select>
+    <header>
+        <nav>
+            <ul>
+                <li><button onclick="window.location.href='../index.html'">Pagina Principală</button></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Calculator Emisii de carbon - Transport </h1>
+    </main>
+
+    <div class="calculator-container">
+        <div class="calculator-box">
     <p>Eficienta: </p>
     <input type="number" id="js_eficienta">
     <select id="js_tip_eficienta">
@@ -27,6 +35,7 @@
     </select>
     <button onclick="CalculeazaTotalul();">Calculeaza</button>
     <p class="js_rezultat"></p>
-    <script src="Scripts/calculatorEmisiiMasini.js"></script>
+    <script src="../Scripts/calculatorEmisiiMasini.js"></script>
+    </div></div>
 </body>
 </html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="ro">
+    <link rel="stylesheet" href="../Styles/calculatorEmisiiMasini.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emisii Transport</title>
+    <link rel="stylesheet" href="Styles/calculatorEmisiiMasini.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <style type="text/css">
+
+      #map {
+        height: 700px;
+        width: 100%;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><button onclick="window.location.href='../index.html'">Pagina Principală</button></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Calculator Emisii de carbon - Transport </h1>
+    </main>
+    
+    <div class="calculator-container">
+        <div class="calculator-box">
+            <div class="masina-emisii-content">
+      
+
+                <div id="map"></div>
+                
+                  <div class="map-marker-buttons-div">
+                    <button onclick="selectOrigineFunc()">Selecteaza Originea</button>
+                    <button onclick="selectDestinatieFunc()">Selecteaza Destinatia</button>
+                  </div>
+            
+            
+                  <script>
+                    var selOrigine = false;
+                    var selDestinatie = false;
+            
+                    var esteOrigine = false;
+                    var esteDestinatie = false;
+            
+                    var origineLatLng = L.latLng(0, 0);
+                    var destinatieLatLng = L.latLng(0, 0);
+            
+                    var traseuOdata = false;
+            
+                    var map = L.map('map').setView([45.93, 24.75], 6.5);
+            
+                    var route = L.Routing;
+            
+                    
+            
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    }).addTo(map);
+            
+                    var markerOrigine = L.marker([0.0,0.0]).addTo(map);
+                    var markerDestinatie = L.marker([0.0,0.0]).addTo(map);
+                    markerOrigine.setOpacity(0);
+                    markerDestinatie.setOpacity(0);
+            
+                    function onMapClick(e) {
+                      if(selOrigine == true && esteOrigine == false) {
+                        markerOrigine.setLatLng(e.latlng);
+                        markerOrigine.setOpacity(1);
+                        selOrigine = false;
+                        esteOrigine = true;
+                      }
+                      if(selDestinatie == true && esteDestinatie == false) {
+                        markerDestinatie.setLatLng(e.latlng);
+                        markerDestinatie.setOpacity(1);
+                        selDestinatie = false;
+                        esteDestinatie = true;
+                      }
+                      
+                      if(esteOrigine == true && esteDestinatie == true && traseuOdata == false) {
+                        route = L.Routing.control({
+                        waypoints: [
+                        L.latLng(markerOrigine.getLatLng()),
+                        L.latLng(markerDestinatie.getLatLng())
+                        ]
+                        }).addTo(map);
+                        markerOrigine.setOpacity(0);
+                        markerDestinatie.setOpacity(0);
+                        traseuOdata = true;
+                        route.on('routesfound', avemDistanta);
+                      }
+                    }
+            
+                    function selectOrigineFunc(){
+                      if(esteOrigine == false) {
+                        selOrigine = !selOrigine;
+                        selDestinatie = false;
+                      }
+                    }
+            
+                    function selectDestinatieFunc(){
+                      if(esteDestinatie == false) {
+                        selDestinatie = !selDestinatie;
+                        selOrigine = false;
+                      }
+                    }
+            
+                    function avemDistanta(e) {
+                        var distanta = e.routes[0].summary.totalDistance / 1000;
+                        document.getElementById("js_distanta").value = distanta;
+                    }
+            
+                    map.on('click', onMapClick);
+                </script>
+                </div>
+    <p>Distanța: </p>
+    <input type="text" id="js_distanta">
+    <select id="js_unitate">
+        <option value="km">km</option>
+        <option value="mile">mile</option>
+    </select>
+    <p>Eficiența: </p>
+    <input type="number" id="js_eficienta">
+    <select id="js_tip_eficienta">
+        <option value="g/km">g/km</option>
+        <option value="L/100km">L/100km</option>
+        <option value="KWh/100km">KWh/100km</option>
+    </select>
+    <select id="js_tip_combustibil">
+        <option value="benzina">benzina</option>
+        <option value="motorina">motorina</option>
+        <option value="electric">electric</option>
+    </select>
+    <button onclick="CalculeazaTotalul();">Calculeaza</button>
+    <p class="js_rezultat"></p>
+    <script src="../Scripts/calculatorEmisiiMasini.js"></script>
+    </div></div>
+</body>
+</html>
