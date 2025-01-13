@@ -2,3 +2,4 @@
 
 Resurse Utilizate:
 - uiverse (chenarul interactiv)
+- fontawesome 
