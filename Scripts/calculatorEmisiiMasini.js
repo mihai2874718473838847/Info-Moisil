@@ -1,5 +1,7 @@
+const conversieMileInKilometri = 1.61; 
 const conversieBenzina = 23.2;
 const conversieMotorina = 26.5;
+const CO2perKWh = 232;
 
 function CalculeazaTotalul() {
   const distantaInputElement = document.getElementById("js_distanta");
@@ -41,7 +43,7 @@ function CalculeazaTotalul() {
 }
 
 function MileInKilometri(distanta) {
-  distanta *= 1.60934;
+  distanta *= conversieMileInKilometri;
 }
 
 function EmisiigKm(distanta, eficienta) {
@@ -56,6 +58,6 @@ function Emisiil100km(distanta, eficienta, conversie) {
 
 function EmisiiKWh100km(distanta, eficienta) {
   let KWh = eficienta * 100 * distanta;
-  let emisii = KWh * 232;
+  let emisii = KWh * CO2perKWh;
   document.querySelector('.js_rezultat').innerHTML = `${emisii / 1000000} tone de CO2`;
 }
